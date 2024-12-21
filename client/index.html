@@ -56,46 +56,29 @@
   </head>
 
   <body
-    class="text-slate-600 w-screen h-screen bg-gradient-to-br from-white from-0% to-slate-100 to-10% grid grid-cols-[25%,1fr]"
+    class="relative text-slate-600 w-screen h-screen bg-gradient-to-br from-white from-0% to-slate-100 to-10% sm:grid grid-cols-[25%,1fr]"
   >
     <aside
-      class="relative p-8 grid grid-rows-[auto_1fr_auto] max-h-screen gap-4 w-full border-r border-slate-400/20"
+      id="aside"
+      class="bg-slate-100 sm:relative absolute top-0 -left-full sm:left-0 transition-all duration-300 p-2 sm:p-8 sm:grid grid-rows-[auto_1fr_auto] max-h-screen gap-4 w-full border-r border-slate-400/20"
     >
       <section
         class="flex flex-col gap-3 w-full border-b border-slate-400/20 pb-4"
       >
-        <picture
-          class="flex flex-row w-full justify-center items-center gap-24"
-        >
-          <div class="flex flex-row w-full justify-center items-center gap-2">
-            <img src="/svg/logoDark.svg" alt="Logo" class="w-14" />
+        <picture class="flex w-full justify-between items-center">
+          <div class="flex w-full items-center gap-2">
+            <img src="/svg/logoDark.svg" alt="Logo" class="w-10" />
             <h1
               class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blueClaro from-0% to-black to-80%"
             >
-              RoSa Chat
+              RoSa
             </h1>
           </div>
-          <button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              id="Outline"
-              viewBox="0 0 24 24"
-              width="40px"
-              height="40px"
-            >
-              <path
-                d="M7,0H4A4,4,0,0,0,0,4V7a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V4A4,4,0,0,0,7,0ZM9,7A2,2,0,0,1,7,9H4A2,2,0,0,1,2,7V4A2,2,0,0,1,4,2H7A2,2,0,0,1,9,4Z"
-              />
-              <path
-                d="M20,0H17a4,4,0,0,0-4,4V7a4,4,0,0,0,4,4h3a4,4,0,0,0,4-4V4A4,4,0,0,0,20,0Zm2,7a2,2,0,0,1-2,2H17a2,2,0,0,1-2-2V4a2,2,0,0,1,2-2h3a2,2,0,0,1,2,2Z"
-              />
-              <path
-                d="M7,13H4a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V17A4,4,0,0,0,7,13Zm2,7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2H7a2,2,0,0,1,2,2Z"
-              />
-              <path
-                d="M20,13H17a4,4,0,0,0-4,4v3a4,4,0,0,0,4,4h3a4,4,0,0,0,4-4V17A4,4,0,0,0,20,13Zm2,7a2,2,0,0,1-2,2H17a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h3a2,2,0,0,1,2,2Z"
-              />
-            </svg>
+          <button
+            class="w-12 p-1 hover:bg-slate-200 rounded-lg transition-colors duration-400"
+            id="toggleAside"
+          >
+            <img src="/svg/buttonAside.svg" alt="" />
           </button>
         </picture>
         <a
@@ -302,15 +285,22 @@
         </a>
       </section>
     </aside>
-    <main class="flex place-content-center w-full h-screen">
-      <section class="w-3/5 p-12 flex place-content-center">
+    <main class="flex place-content-center w-full h-screen py-2 sm:p-0">
+      <section class="sm:w-3/5 sm:p-12 flex flex-col place-content-center">
+        <button
+          type="button"
+          class="sm:hidden sm:absolute top-4 left-4 w-10 sm:w-12 p-1 hover:bg-slate-200 rounded-lg transition-colors duration-400"
+          id="toggleAside2"
+        >
+          <img src="/svg/buttonAside.svg" alt="" />
+        </button>
         <article id="chat" class="w-full h-full grid grid-rows-[1fr_15%] gap-4">
           <ul
             class="flex flex-col items-end gap-4 overflow-y-scroll no-scrollbar"
             id="messages"
           ></ul>
           <form
-            class="w-full h-full flex flex-row gap-4 p-6 bg-slate-200 shadow-sm rounded-3xl"
+            class="w-full h-full flex flex-row gap-2 sm:gap-4 p-4 sm:p-6 bg-slate-200 shadow-sm rounded-3xl"
             id="form"
           >
             <input
@@ -320,25 +310,10 @@
               autocomplete="off"
             />
             <button
-              class="p-4 pr-0 hover:scale-125 transition-all duration-300"
+              class="sm:p-4 pr-0 w-8 hover:scale-125 transition-all duration-300"
               type="submit"
             >
-              <svg
-                width="25px"
-                height="25px"
-                xmlns="http://www.w3.org/2000/svg"
-                id="Layer_1"
-                viewBox="0 0 24 24"
-                width="512"
-                height="512"
-              >
-                <path
-                  d="M5.521,19.9h5.322l3.519,3.515a2.035,2.035,0,0,0,1.443.6,2.1,2.1,0,0,0,.523-.067,2.026,2.026,0,0,0,1.454-1.414L23.989,1.425Z"
-                />
-                <path
-                  d="M4.087,18.5,22.572.012,1.478,6.233a2.048,2.048,0,0,0-.886,3.42l3.495,3.492Z"
-                />
-              </svg>
+              <img src="/svg/enviar.svg" alt="" />
             </button>
           </form>
         </article>
@@ -346,3 +321,40 @@
     </main>
   </body>
 </html>
+
+<script>
+  const toggleAside = document.getElementById("toggleAside");
+  const toggleAside2 = document.getElementById("toggleAside2");
+  const aside = document.getElementById("aside");
+  const body = document.body;
+
+  toggleAside.addEventListener("click", () => {
+    if (aside.classList.contains("sm:hidden")) {
+      aside.classList.replace("sm:hidden", "sm:grid");
+    } else {
+      aside.classList.replace("sm:grid", "sm:hidden");
+    }
+    if (aside.classList.contains("-left-full")) {
+      aside.classList.replace("-left-full", "left-0");
+    } else {
+      aside.classList.replace("left-0", "-left-full");
+    }
+    toggleAside2.classList.toggle("sm:hidden");
+    body.classList.toggle("sm:grid");
+  });
+
+  toggleAside2.addEventListener("click", () => {
+    if (aside.classList.contains("sm:hidden")) {
+      aside.classList.replace("sm:hidden", "sm:grid");
+    } else {
+      aside.classList.replace("sm:grid", "sm:hidden");
+    }
+    if (aside.classList.contains("-left-full")) {
+      aside.classList.replace("-left-full", "left-0");
+    } else {
+      aside.classList.replace("left-0", "-left-full");
+    }
+    toggleAside2.classList.toggle("sm:hidden");
+    body.classList.toggle("sm:grid");
+  });
+</script>
