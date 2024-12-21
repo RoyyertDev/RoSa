@@ -1,0 +1,22 @@
+{
+  "name": "rosa",
+  "version": "1.0.0",
+  "description": "RoSa Chatbot para la asistencia al usuario mediante inteligencia artificial",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch ./server/index.js",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Royyert Ibarra",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.21.1",
+    "morgan": "1.10.0",
+    "socket.io": "4.8.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}
