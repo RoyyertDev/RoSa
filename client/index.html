@@ -16,23 +16,45 @@
       const messages = document.getElementById("messages");
 
       socket.on("message", (message) => {
-        const item = `
-                <li class="flex flex-row w-full gap-4 items-end text-slate-600">
-                    <img src="https://www.clarin.com/img/2023/12/01/rhVeUAooY_2000x1500__1.jpg" alt=""
-                        class="w-12 h-12 object-cover rounded-full">
-                    <div class="grid grid-rows-[auto_1fr] bg-slate-200 shadow-sm rounded-3xl rounded-bl-none w-full py-3 px-4 text-wrap shadow-sm">
-                        <p class="">${message}</p>
-                        <span class="text-xs">Tu · ${new Date().toLocaleTimeString()}</span>
-                    </div
-                </li>
-            `;
-        messages.insertAdjacentHTML("beforeend", item);
+        let active = messages.querySelector(".active");
+
+        if (!active) {
+          const item = `
+                  <li class="active flex ${
+                    message.from === "User" ? "flex-row-reverse" : "flex-row"
+                  } w-full gap-4 items-end text-slate-600">
+                      <img src="https://www.clarin.com/img/2023/12/01/rhVeUAooY_2000x1500__1.jpg" alt=""
+                          class="w-12 h-12 object-cover rounded-full">
+                      <div class="grid grid-rows-[auto_1fr] rounded-3xl ${
+                        message.from === "User"
+                          ? "rounded-br-none bg-slate-200 shadow-sm py-3 px-4"
+                          : "rounded-bl-none"
+                      } text-wrap gap-1">
+                          <p class="message-content"></p>
+                          <span class="text-xs font-semibold">${
+                            message.from === "User" ? "Tu" : "RoSa"
+                          } · ${new Date().toLocaleTimeString()}</span>
+                      </div
+                  </li>
+              `;
+          messages.insertAdjacentHTML("beforeend", item);
+          active = messages.querySelector(".active");
+        }
+        const p = active.querySelector(".message-content");
+        p.textContent += message.message;
+        messages.scrollTop = messages.scrollHeight;
+        if (message.complete) {
+          const activeLi = messages.querySelector(".active");
+          if (activeLi) {
+            activeLi.classList.remove("active");
+          }
+        }
       });
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        if (input.value) {
+        if (input.value !== "") {
           socket.emit("message", input.value);
           input.value = "";
         }
@@ -43,11 +65,13 @@
       /* Ocultar la barra de desplazamiento en navegadores basados en WebKit */
       .no-scrollbar::-webkit-scrollbar {
         display: none;
+        scroll-behavior: smooth;
       }
 
       /* Ocultar la barra de desplazamiento en todos los navegadores */
       .no-scrollbar {
         -ms-overflow-style: none;
+        scroll-behavior: smooth;
         /* Para Internet Explorer y Edge */
         scrollbar-width: none;
         /* Para Firefox */
@@ -127,10 +151,10 @@
       <section class="flex flex-col w-full text-sm truncate">
         <p class="text-gray-400 font-semibold">HISTORIAL DE CHATS</p>
         <ul
-          class="flex flex-col w-full overflow-y-scroll text-ellipsis overflow-x-hidden no-scrollbar"
+          class="flex flex-col w-full overflow-y-scroll overflow-x-hidden no-scrollbar"
         >
           <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
+            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
           >
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
             voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
@@ -138,7 +162,7 @@
             minima id commodi.
           </li>
           <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
+            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
           >
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
             voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
@@ -146,7 +170,7 @@
             minima id commodi.
           </li>
           <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
+            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
           >
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
             voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
@@ -154,7 +178,7 @@
             minima id commodi.
           </li>
           <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
+            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
           >
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
             voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
@@ -162,63 +186,7 @@
             minima id commodi.
           </li>
           <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
-            explicabo doloremque eos distinctio optio minus. Blanditiis harum ea
-            minima id commodi.
-          </li>
-          <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
-            explicabo doloremque eos distinctio optio minus. Blanditiis harum ea
-            minima id commodi.
-          </li>
-          <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
-            explicabo doloremque eos distinctio optio minus. Blanditiis harum ea
-            minima id commodi.
-          </li>
-          <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
-            explicabo doloremque eos distinctio optio minus. Blanditiis harum ea
-            minima id commodi.
-          </li>
-          <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
-            explicabo doloremque eos distinctio optio minus. Blanditiis harum ea
-            minima id commodi.
-          </li>
-          <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
-            explicabo doloremque eos distinctio optio minus. Blanditiis harum ea
-            minima id commodi.
-          </li>
-          <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
-          >
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
-            explicabo doloremque eos distinctio optio minus. Blanditiis harum ea
-            minima id commodi.
-          </li>
-          <li
-            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer"
+            class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
           >
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
             voluptas tempore quam laboriosam, nisi dolor et voluptatum animi
@@ -305,7 +273,7 @@
           >
             <input
               class="bg-transparent h-full w-full focus:outline-none focus:ring-0"
-              placeholder="Type your message here..."
+              placeholder="Preguntale a RoSa lo que quieras..."
               id="input"
               autocomplete="off"
             />
