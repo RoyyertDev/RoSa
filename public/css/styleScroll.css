@@ -1,0 +1,14 @@
+/* Ocultar la barra de desplazamiento en navegadores basados en WebKit */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
+/* Ocultar la barra de desplazamiento en todos los navegadores */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  /* Para Internet Explorer y Edge */
+  scrollbar-width: none;
+  /* Para Firefox */
+}
