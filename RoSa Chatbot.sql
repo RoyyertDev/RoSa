@@ -43,18 +43,6 @@ CREATE TABLE `users` (
   `sex` varchar(20) NOT NULL
 );
 
-CREATE TABLE `user_details` (
-  `id` bigint PRIMARY KEY NOT NULL,
-  `fk_user` bigint UNIQUE NOT NULL,
-  `fk_role` bigint NOT NULL,
-  `fk_countries` varchar(100) NOT NULL,
-  `fk_provinces` varchar(100) NOT NULL,
-  `fk_cities` varchar(100) NOT NULL,
-  `zip_code` varchar(20) NOT NULL,
-  `site_reference` varchar(250) NOT NULL,
-  `phone` varchar(20) NOT NULL
-);
-
 CREATE TABLE `countries` (
   `id` bigint PRIMARY KEY NOT NULL,
   `name` varchar(50)
@@ -73,8 +61,20 @@ CREATE TABLE `cities` (
 );
 
 CREATE TABLE `rol_users` (
-  `id` int PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL,
   `name` varchar(20) NOT NULL
+);
+
+CREATE TABLE `user_details` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `fk_user` bigint UNIQUE NOT NULL,
+  `fk_role` bigint NOT NULL,
+  `fk_countries` bigint NOT NULL,
+  `fk_provinces` bigint NOT NULL,
+  `fk_cities` bigint NOT NULL,
+  `zip_code` varchar(20) NOT NULL,
+  `site_reference` varchar(250) NOT NULL,
+  `phone` varchar(20) NOT NULL
 );
 
 CREATE TABLE `shopping_carts` (
@@ -99,12 +99,32 @@ CREATE TABLE `payment_methods` (
   `commission` decimal NOT NULL
 );
 
+CREATE TABLE `chats` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `fk_users` bigint NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `date` date NOT NULL
+);
+
 CREATE TABLE `payments` (
   `id` bigint PRIMARY KEY NOT NULL,
   `fk_shopping_carts` bigint NOT NULL,
-  `fk_method` int NOT NULL,
+  `fk_method` bigint NOT NULL,
   `amount` decimal NOT NULL,
   `date` date NOT NULL
+);
+
+CREATE TABLE `author` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `name` varchar(10) NOT NULL
+);
+
+CREATE TABLE `messages` (
+  `id` bigint PRIMARY KEY NOT NULL,
+  `fk_chats` bigint NOT NULL,
+  `fk_author` bigint NOT NULL,
+  `date` date NOT NULL,
+  `content` varchar(500) NOT NULL
 );
 
 ALTER TABLE `foods` ADD FOREIGN KEY (`fk_categories`) REFERENCES `categories` (`id`);
@@ -117,7 +137,7 @@ ALTER TABLE `product_item` ADD FOREIGN KEY (`fk_product`) REFERENCES `items` (`i
 
 ALTER TABLE `items` ADD FOREIGN KEY (`fk_foods`) REFERENCES `foods` (`id`);
 
-ALTER TABLE `users` ADD FOREIGN KEY (`id`) REFERENCES `user_details` (`fk_user`);
+ALTER TABLE `user_details` ADD FOREIGN KEY (`fk_user`) REFERENCES `users` (`id`);
 
 ALTER TABLE `user_details` ADD FOREIGN KEY (`fk_role`) REFERENCES `rol_users` (`id`);
 
@@ -140,3 +160,9 @@ ALTER TABLE `items_cart` ADD FOREIGN KEY (`fk_product`) REFERENCES `products` (`
 ALTER TABLE `payments` ADD FOREIGN KEY (`fk_shopping_carts`) REFERENCES `shopping_carts` (`id`);
 
 ALTER TABLE `payments` ADD FOREIGN KEY (`fk_method`) REFERENCES `payment_methods` (`id`);
+
+ALTER TABLE `chats` ADD FOREIGN KEY (`fk_users`) REFERENCES `users` (`id`);
+
+ALTER TABLE `messages` ADD FOREIGN KEY (`fk_chats`) REFERENCES `chats` (`id`);
+
+ALTER TABLE `messages` ADD FOREIGN KEY (`fk_author`) REFERENCES `author` (`id`);

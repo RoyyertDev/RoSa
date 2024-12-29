@@ -1,8 +1,43 @@
 (function loadComponent() {
-  fetch("/components/aside.html")
+  fetch("/components/asideAdmin.html")
     .then((response) => response.text())
     .then((html) => {
       document.getElementById("aside").innerHTML = html;
+
+      const links = [
+        {
+          href: "/users",
+          src: "/svg/dashboard/usuario.svg",
+          text: "Usuarios",
+        },
+        {
+          href: "/foods",
+          src: "/svg/restaurante.svg",
+          text: "Menu",
+        },
+        {
+          href: "/items",
+          src: "/svg/dashboard/items.svg",
+          text: "Rubros",
+        },
+        {
+          href: "/products",
+          src: "/svg/dashboard/productos.svg",
+          text: "Productos",
+        },
+      ];
+
+      const section = document.querySelector("section");
+
+      links.forEach((link) => {
+        section.innerHTML += `
+              <a href="${link.href}" class="flex flex-row w-full gap-2 py-3 px-4 hover:bg-slate-200 rounded-xl items-center transition-all duration-400">
+                <img class="w-5" src="${link.src}" alt="" />
+                ${link.text}
+              </a>
+            `;
+      });
+
       const toggleAside = document.getElementById("toggleAside");
       const toggleAside2 = document.getElementById("toggleAside2");
       const aside = document.getElementById("aside");

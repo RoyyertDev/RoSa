@@ -25,6 +25,6 @@ app.use(logger("dev"));
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use("/components", express.static(path.join(process.cwd(), "components")));
 app.use("/", router);
-server.listen(3000, () => {
+server.listen(PORT, () => {
   console.log(`Corriendo en el puerto http://localhost:${PORT}`);
 });
