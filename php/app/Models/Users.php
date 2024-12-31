@@ -8,17 +8,22 @@ use PDOException;
 class Users {
     public static function save(Array $input){
         $conn = BD::connect();
-        $sql = "INSERT INTO users (names, surnames, identification_document, email, password, sex) VALUES (:name, :surnames, :identification_document, :email, :password, :sex)";
+        $sql = "INSERT INTO users (names, surnames, identification_document, email, password, sex) VALUES (:names, :surnames, :identification_document, :email, :password, :sex)";
         try {
             $stmt = $conn->prepare($sql);
             $stmt->execute($input);
-            $user = $stmt->fetch();
-            echo "<script>alert('Registro exitoso');</script>";
-            echo "<script>window.location.href = './login';</script>";
+            $response = [
+                'status' => "success",
+                'message' => "Usuario registrado exitosamente"
+            ];
         } catch (PDOException $e) {
-            echo "Error de conexion: " . $e->getMessage();
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage()
+            ];
         }
         $conn = null;
+        echo json_encode($response);
     }
 
     public static function login(Array $input){

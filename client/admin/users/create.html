@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usuarios</title>
+    <link href="/css/output.css" rel="stylesheet" />
+    <script src="/js/loadAsideAdmin.js"></script>
+  </head>
+
+  <body
+    class="relative text-slate-600 w-screen h-screen bg-gradient-to-br from-white from-0% to-slate-100 to-10% sm:grid grid-cols-[25%,1fr]"
+  >
+    <aside
+      id="aside"
+      class="bg-slate-100 sm:relative absolute top-0 -left-full sm:left-0 transition-all duration-300 p-2 sm:p-8 sm:grid grid-rows-[auto_1fr_auto] max-h-screen gap-4 w-full border-r border-slate-400/20"
+    ></aside>
+    <main class="flex place-content-center w-full h-screen py-2 sm:p-0">
+      <section class="sm:w-full sm:p-12 flex flex-col place-content-center">
+        <button
+          type="button"
+          class="sm:hidden sm:absolute top-4 left-4 w-10 sm:w-12 p-1 hover:bg-slate-200 rounded-lg transition-colors duration-400"
+          id="toggleAside2"
+        >
+          <img src="/svg/buttonAside.svg" alt="" />
+        </button>
+        <div
+          class="sm:w-3/4 p-4 bg-slate-200/80 rounded-lg shadow border border-slate-300/70 m-auto flex flex-col justify-center items-center gap-4"
+        >
+          <h1 class="text-3xl font-bold">Crear Usuario</h1>
+          <form class="grid grid-cols-2 gap-3 w-full">
+            <input
+              class="p-3 rounded-lg border border-slate-300/70"
+              placeholder="Nombres"
+              type="text"
+              id="names"
+              required
+            />
+            <input
+              class="p-3 rounded-lg border border-slate-300/70"
+              placeholder="Apellidos"
+              type="text"
+              id="surnames"
+              required
+            />
+            <input
+              class="p-3 rounded-lg border border-slate-300/70"
+              placeholder="Doc. Identificación"
+              type="number"
+              id="identification_document"
+              required
+            />
+            <input
+              class="p-3 rounded-lg border border-slate-300/70"
+              placeholder="Correo electronico"
+              type="email"
+              id="email"
+              required
+            />
+            <input
+              class="p-3 rounded-lg border border-slate-300/70"
+              placeholder="Contraseña"
+              type="password"
+              id="password"
+              required
+            />
+            <input
+              class="p-3 rounded-lg border border-slate-300/70"
+              placeholder="Confirmar Contraseña"
+              type="password"
+              id="password_confirm"
+              required
+            />
+            <select
+              class="p-3 rounded-lg border border-slate-300/70 cursor-pointer"
+              id="sex"
+            >
+              <option value="" disabled selected>Seleccionar sexo</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+            </select>
+          </form>
+          <fieldset class="grid grid-cols-2 gap-3">
+            <button
+              id="abort"
+              class="p-3 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors duration-300"
+            >
+              Cancelar
+            </button>
+            <button
+              id="send"
+              class="p-3 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors duration-300"
+            >
+              Registrar usuario
+            </button>
+          </fieldset>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+<script>
+  const abort = document.getElementById("abort");
+  const send = document.getElementById("send");
+
+  abort.addEventListener("click", () => {
+    window.location.href = "/admin/users";
+  });
+
+  send.addEventListener("click", () => {
+    const dates = {
+      names: document.getElementById("names").value,
+      surnames: document.getElementById("surnames").value,
+      identification_document: document.getElementById(
+        "identification_document"
+      ).value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+      password_confirm: document.getElementById("password_confirm").value,
+      sex: document.getElementById("sex").value,
+    };
+
+    for (const key in dates) {
+      if (dates[key] === "") {
+        alert("El campo " + key + " es obligatorio");
+        return;
+      }
+    }
+
+    if (dates.password !== dates.password_confirm) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    fetch("/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dates),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message["status"] === "error") {
+          alert(data.message);
+          return;
+        } else if (data.message["status"] === "success") {
+          alert(data.message);
+          window.location.href = "/admin/users";
+          return;
+        }
+      })
+      .catch((err) => console.log(err));
+  });
+</script>

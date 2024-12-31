@@ -6,7 +6,7 @@
 
       const links = [
         {
-          href: "/users",
+          href: "/admin/users",
           src: "/svg/dashboard/usuario.svg",
           text: "Usuarios",
         },

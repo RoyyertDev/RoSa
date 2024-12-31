@@ -21,6 +21,7 @@ io.on("connection", (socket) => {
   socket.on("message", async (message) => handleMessage(socket, message));
 });
 
+app.use(express.json());
 app.use(logger("dev"));
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use("/components", express.static(path.join(process.cwd(), "components")));
