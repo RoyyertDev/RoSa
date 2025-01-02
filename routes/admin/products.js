@@ -2,7 +2,7 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/products", (req, res) => {
+router.get("/", (req, res) => {
   res.sendFile(process.cwd() + "/client/admin/products.html");
 });
 

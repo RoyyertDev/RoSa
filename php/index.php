@@ -16,6 +16,9 @@ switch ($uri) {
             case 'POST':
                 Users::save($dates);
             break;
+            case 'GET':
+                Users::show();
+            break;
         }
     break;
 }

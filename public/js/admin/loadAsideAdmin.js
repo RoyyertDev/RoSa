@@ -11,17 +11,17 @@
           text: "Usuarios",
         },
         {
-          href: "/foods",
+          href: "/admin/foods",
           src: "/svg/restaurante.svg",
           text: "Menu",
         },
         {
-          href: "/items",
+          href: "/admin/items",
           src: "/svg/dashboard/items.svg",
           text: "Rubros",
         },
         {
-          href: "/products",
+          href: "/admin/products",
           src: "/svg/dashboard/productos.svg",
           text: "Productos",
         },

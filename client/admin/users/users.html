@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Usuarios</title>
     <link href="/css/output.css" rel="stylesheet" />
-    <script src="/js/loadAsideAdmin.js"></script>
+    <script src="/js/admin/loadAsideAdmin.js"></script>
   </head>
 
   <body
@@ -26,8 +26,8 @@
         </button>
         <div class="p-6 bg-gray-300 w-full flex flex-col gap-4 rounded-xl">
           <header class="text-black w-full text-sm">
-            <a
-              href="/admin/users/create"
+            <button
+              id="buttonRegister"
               class="bg-gray-200 text-black h-12 rounded-xl flex items-center justify-center gap-2 p-3"
             >
               <svg
@@ -45,7 +45,7 @@
                 />
               </svg>
               Nuevo Usuario
-            </a>
+            </button>
           </header>
           <table class="table-auto text-black w-full text-sm text-left h-32">
             <thead>
@@ -63,7 +63,7 @@
                 <th class="">Doc. Identificación</th>
                 <th class="">Correo electronico</th>
                 <th class="">Sexo</th>
-                <th class="">Acciones</th>
+                <th class=""></th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -71,5 +71,85 @@
         </div>
       </section>
     </main>
+
+    <!-- modal -->
+    <div
+      class="absolute top-0 left-0 w-screen h-screen hidden bg-black/50 justify-center items-center"
+      id="modal"
+    >
+      <section
+        class="sm:w-2/4 p-4 bg-gray-300 rounded-lg shadow border border-slate-300/70 m-auto flex flex-col justify-center items-center gap-4"
+      >
+        <h1 class="text-3xl font-bold">Crear Usuario</h1>
+        <form class="grid grid-cols-2 gap-3 w-full">
+          <input
+            class="p-3 rounded-lg border border-slate-300/70"
+            placeholder="Nombres"
+            type="text"
+            id="names"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70"
+            placeholder="Apellidos"
+            type="text"
+            id="surnames"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70"
+            placeholder="Doc. Identificación"
+            type="number"
+            id="identification_document"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70"
+            placeholder="Correo electronico"
+            type="email"
+            id="email"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70"
+            placeholder="Contraseña"
+            type="password"
+            id="password"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70"
+            placeholder="Confirmar Contraseña"
+            type="password"
+            id="password_confirm"
+            required
+          />
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 cursor-pointer"
+            id="sex"
+          >
+            <option value="" disabled selected>Seleccionar sexo</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+        </form>
+        <fieldset class="grid grid-cols-2 gap-3">
+          <button
+            id="abort"
+            class="p-3 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors duration-300"
+          >
+            Cancelar
+          </button>
+          <button
+            id="send"
+            class="p-3 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors duration-300"
+          >
+            Registrar usuario
+          </button>
+        </fieldset>
+      </section>
+    </div>
   </body>
 </html>
+<script src="/js/admin/users/show.js"></script>
+<script src="/js/admin/users/create.js"></script>

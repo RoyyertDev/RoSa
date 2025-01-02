@@ -9,7 +9,7 @@ class Users {
         if($dates['password'] != $dates['password_confirm']){
             // echo "<script>alert('Las contraseñas no coinciden');</script>";
             // echo "<script>window.location.href = './register';</script>";
-            return 'Las contraseñas no coinciden';
+            echo 'Las contraseñas no coinciden';
         } else {
             $dates['password'] = password_hash($dates['password'], PASSWORD_DEFAULT);
             ModelUsers::save(array_diff_key($dates, ['password_confirm' => null]));
@@ -29,5 +29,9 @@ class Users {
             'identification_document' => $identification_document,
             'password' => $password,
         ]);
+    }
+
+    public static function show(){
+        ModelUsers::show();
     }
 }

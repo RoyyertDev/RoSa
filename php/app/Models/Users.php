@@ -52,4 +52,17 @@ class Users {
             echo "Error de conexion: " . $e->getMessage();
         }
     }
+
+    public static function show(){
+        $conn = BD::connect();
+        $sql = "SELECT * FROM users";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $users = $stmt->fetchAll();
+            echo json_encode($users);
+        } catch (PDOException $e) {
+            echo "Error de conexion: " . $e->getMessage();
+        }
+    }
 }

@@ -1,9 +1,9 @@
 import express from "express";
 import proxy from "express-http-proxy";
-import users from "./dashboard/users.js";
-import foods from "./dashboard/foods.js";
-import items from "./dashboard/items.js";
-import products from "./dashboard/products.js";
+import users from "./admin/users.js";
+import foods from "./admin/foods.js";
+import items from "./admin/items.js";
+import products from "./admin/products.js";
 
 const router = express.Router();
 
