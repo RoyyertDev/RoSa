@@ -12,8 +12,6 @@ $method = $_SERVER['REQUEST_METHOD'];
 $body = file_get_contents('php://input');
 $dates = json_decode($body, true);
 
-
-
 switch ($uri) {
     case '/login':
         switch ($method) {
@@ -37,6 +35,16 @@ switch ($uri) {
             case 'POST':
                 Chats::save($dates);
             break;
+            // case 'GET':
+            //     Chats::show($dates);
+            // break;
+        }
+    break;
+    case '/userChats':
+        switch ($method) {
+            case 'POST':
+                Chats::show($dates);
+            break; 
         }
     break;
     case '/messages':

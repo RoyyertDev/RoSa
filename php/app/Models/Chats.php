@@ -27,4 +27,26 @@ class Chats {
         $conn = null;
         echo json_encode($response);
     }
+
+    public static function show(Array $dates) { 
+        $conn = BD::connect();
+        $sql = "SELECT * FROM chats WHERE fk_users = :fk_users";    
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute($dates);
+            $response = [
+                'status' => "success",
+                'message' => "Chats obtenidos exitosamente",
+                'chats' => $stmt->fetchAll()
+            ];
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
 }

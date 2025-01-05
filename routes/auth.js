@@ -33,7 +33,7 @@ router.post("/login", (req, res) => {
 
 router.get("/session", (req, res) => {
   if (req.session.user) {
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: true, user: req.session.user });
   } else {
     res.status(200).json({ success: false });
   }
