@@ -26,31 +26,37 @@ class Users {
         echo json_encode($response);
     }
 
-    public static function login(Array $input){
+    public static function login(Array $dates){
         $conn = BD::connect();
-        $sql = "SELECT * FROM users WHERE email = :email AND identification_document = :identification_document";
+        $sql = "SELECT * FROM users WHERE email = :email";
         try {
             $stmt = $conn->prepare($sql);
             $stmt->execute([
-                'email' => $input['email'],
-                'identification_document' => $input['identification_document'],
+                'email' => $dates['email'],
             ]);
             $user = $stmt->fetch();
-            if($user && password_verify($input['password'], $user['password'])){
-                session_start();
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['names'];
-                $_SESSION['user_surnames'] = $user['surnames'];
-                $_SESSION['user_identification_document'] = $user['identification_document'];
-                echo "<script>alert('Inicio de sesión exitoso');</script>";
-                echo "<script>window.location.href = './dashboard';</script>";
+            if($user && password_verify($dates['password'], $user['password'])){
+                $response = [
+                    'status' => "success",
+                    'userSession' => [
+                        'id' => $user['id'],
+                        'names' => $user['names'],
+                    ],
+                ];
             } else {
-                echo "<script>alert('Email o contraseña incorrectos');</script>";
-                echo "<script>window.location.href = './login';</script>";
+                $response = [
+                    'status' => "error",
+                    'message' => "Credenciales incorrectas"
+                ];
             }
         } catch (PDOException $e) {
-            echo "Error de conexion: " . $e->getMessage();
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage()
+            ];
         }
+        $conn = null;
+        echo json_encode($response);
     }
 
     public static function show(){

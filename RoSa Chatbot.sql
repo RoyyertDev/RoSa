@@ -1,16 +1,16 @@
 CREATE TABLE `categories` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL
 );
 
 CREATE TABLE `foods` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_categories` bigint NOT NULL,
   `name` varchar(50) NOT NULL
 );
 
 CREATE TABLE `products` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_foods` bigint NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` text(500) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE `products` (
 );
 
 CREATE TABLE `items` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `content_gr` bigint NOT NULL,
   `extra` bool NOT NULL,
@@ -28,13 +28,13 @@ CREATE TABLE `items` (
 );
 
 CREATE TABLE `product_item` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_product` bigint NOT NULL,
   `fk_item` bigint NOT NULL
 );
 
 CREATE TABLE `users` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `names` varchar(70) NOT NULL,
   `surnames` varchar(70) NOT NULL,
   `identification_document` varchar(30) NOT NULL,
@@ -44,29 +44,29 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE `countries` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(50)
 );
 
 CREATE TABLE `provinces` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_countries` bigint NOT NULL,
   `name` varchar(50)
 );
 
 CREATE TABLE `cities` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_provinces` bigint NOT NULL,
   `name` varchar(50)
 );
 
 CREATE TABLE `rol_users` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL
 );
 
 CREATE TABLE `user_details` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_user` bigint UNIQUE NOT NULL,
   `fk_role` bigint NOT NULL,
   `fk_countries` bigint NOT NULL,
@@ -78,14 +78,14 @@ CREATE TABLE `user_details` (
 );
 
 CREATE TABLE `shopping_carts` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_user` bigint NOT NULL,
   `date_create` date NOT NULL,
   `state` varchar(255) NOT NULL DEFAULT 'Pendiente'
 );
 
 CREATE TABLE `items_cart` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_shopping_carts` bigint NOT NULL,
   `fk_product` bigint NOT NULL,
   `amount` int NOT NULL,
@@ -93,21 +93,21 @@ CREATE TABLE `items_cart` (
 );
 
 CREATE TABLE `payment_methods` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `active` bool NOT NULL,
   `commission` decimal NOT NULL
 );
 
 CREATE TABLE `chats` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_users` bigint NOT NULL,
   `title` varchar(50) NOT NULL,
   `date` date NOT NULL
 );
 
 CREATE TABLE `payments` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_shopping_carts` bigint NOT NULL,
   `fk_method` bigint NOT NULL,
   `amount` decimal NOT NULL,
@@ -115,12 +115,12 @@ CREATE TABLE `payments` (
 );
 
 CREATE TABLE `author` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL
 );
 
 CREATE TABLE `messages` (
-  `id` bigint PRIMARY KEY NOT NULL,
+  `id` bigint PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `fk_chats` bigint NOT NULL,
   `fk_author` bigint NOT NULL,
   `date` date NOT NULL,

@@ -46,7 +46,13 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   if (input.value !== "") {
-    socket.emit("message", input.value);
-    input.value = "";
+    if (messages.childElementCount === 0) {
+      const titleChat = input.value.substring(0, 50);
+      socket.emit("message", input.value, titleChat);
+      input.value = "";
+    } else {
+      socket.emit("message", input.value);
+      input.value = "";
+    }
   }
 });
