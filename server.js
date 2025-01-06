@@ -20,8 +20,8 @@ io.on("connection", (socket) => {
     console.log("A user disconnected");
   });
 
-  socket.on("message", async (message, title) =>
-    handleMessage(socket, message, title)
+  socket.on("message", async (message, title, user) =>
+    handleMessage(socket, message, title, user)
   );
 });
 

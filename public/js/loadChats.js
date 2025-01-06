@@ -1,21 +1,17 @@
-export async function loadChats() {
-  const chatsUser = await obtainChats();
-  const ul = document.getElementById("historyChats");
-  chatsUser.forEach((chat) => {
-    ul.innerHTML += `<li
-          class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
-        >
-          ${chat.title}
-        </li>`;
-  });
-}
+import { obtainUserLogin } from "../../middleware/auth.js";
 
-async function obtainUserLogin() {
-  const response = await fetch("/auth/session", {
-    method: "GET",
-  });
-  const data = await response.json();
-  return data.success === true ? data.user : null;
+export async function loadChats() {
+  try {
+    const chatsUser = await obtainChats();
+    const ul = document.getElementById("historyChats");
+    chatsUser.forEach((chat) => {
+      ul.innerHTML += `<li
+              class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
+            >
+              ${chat.title}
+            </li>`;
+    });
+  } catch (error) {}
 }
 
 async function obtainChats() {

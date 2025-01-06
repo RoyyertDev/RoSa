@@ -9,9 +9,7 @@ function loadLoginModal() {
       const buttonLogin = document.getElementById("buttonLogin");
       buttonLogin.addEventListener("click", async () => {
         const logeo = await login(email.value, password.value);
-        if (logeo.success === true) {
-          document.getElementById("modal").remove();
-        }
+        logeo.success === true ? (window.location.href = "/") : null;
       });
     });
 }

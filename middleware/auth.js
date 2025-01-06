@@ -7,6 +7,18 @@ export function authVerify(req, res, next) {
   }
 }
 
+export async function obtainUserLogin() {
+  try {
+    const response = await fetch("http://localhost:3000/auth/session", {
+      method: "GET",
+    });
+    const data = await response.json();
+    return data.success === true ? data.user : null;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function login(email, password) {
   try {
     const response = await fetch("http://localhost:3000/auth/login", {

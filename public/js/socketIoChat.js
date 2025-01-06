@@ -1,4 +1,5 @@
 import { io } from "https://cdn.socket.io/4.5.1/socket.io.esm.min.js";
+import { obtainUserLogin } from "../../middleware/auth.js";
 
 const socket = io();
 
@@ -42,13 +43,14 @@ socket.on("message", (message) => {
   }
 });
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   if (input.value !== "") {
     if (messages.childElementCount === 0) {
       const titleChat = input.value.substring(0, 50);
-      socket.emit("message", input.value, titleChat);
+      const user = await obtainUserLogin();
+      socket.emit("message", input.value, titleChat, user.id);
       input.value = "";
     } else {
       socket.emit("message", input.value);

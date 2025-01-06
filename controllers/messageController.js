@@ -1,9 +1,9 @@
 import { getGroqCloudResponse } from "../services/groqService.js";
 import { createChat } from "../controllers/chatControllers.js";
 
-export async function handleMessage(socket, message, title) {
-  if (!socket.idChat && title) {
-    socket.idChat = await createChat(title);
+export async function handleMessage(socket, message, title, user) {
+  if (!socket.idChat && title && user) {
+    socket.idChat = await createChat(title, user);
   }
   socket.emit("message", { message: message, from: "User", complete: true });
   saveMessage(socket.idChat, 1, message);
