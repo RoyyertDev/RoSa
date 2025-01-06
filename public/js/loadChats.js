@@ -1,16 +1,24 @@
 import { obtainUserLogin } from "../../middleware/auth.js";
 
-export async function loadChats() {
+export async function loadChats(tittle) {
   try {
     const chatsUser = await obtainChats();
     const ul = document.getElementById("historyChats");
-    chatsUser.forEach((chat) => {
+    if (tittle) {
       ul.innerHTML += `<li
               class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
             >
-              ${chat.title}
+              ${tittle}
             </li>`;
-    });
+    } else {
+      chatsUser.forEach((chat) => {
+        ul.innerHTML += `<li
+                class="w-full px-4 py-3 hover:bg-slate-200 transition-all duration-400 rounded-lg cursor-pointer truncate"
+              >
+                ${chat.title}
+              </li>`;
+      });
+    }
   } catch (error) {}
 }
 

@@ -1,5 +1,6 @@
 import { io } from "https://cdn.socket.io/4.5.1/socket.io.esm.min.js";
 import { obtainUserLogin } from "../../middleware/auth.js";
+import { loadChats } from "./loadChats.js";
 
 const socket = io();
 
@@ -52,6 +53,7 @@ form.addEventListener("submit", async (e) => {
       const user = await obtainUserLogin();
       socket.emit("message", input.value, titleChat, user.id);
       input.value = "";
+      loadChats(titleChat);
     } else {
       socket.emit("message", input.value);
       input.value = "";
