@@ -15,12 +15,12 @@ socket.on("message", (message) => {
     const item = `
                   <li class="active flex ${
                     message.from === "User" ? "flex-row-reverse" : "flex-row"
-                  } w-full gap-4 items-end text-slate-600">
+                  } w-full gap-4 items-end text-slate-600 dark:text-white">
                       <img src="https://www.clarin.com/img/2023/12/01/rhVeUAooY_2000x1500__1.jpg" alt=""
                           class="w-12 h-12 object-cover rounded-full">
                       <div class="grid grid-rows-[auto_1fr] rounded-3xl ${
                         message.from === "User"
-                          ? "rounded-br-none bg-slate-200 shadow-sm py-3 px-4"
+                          ? "rounded-br-none bg-slate-200 dark:bg-[#2c2c2c] shadow-sm py-3 px-4"
                           : "rounded-bl-none"
                       } text-wrap gap-1">
                           <p class="message-content"></p>

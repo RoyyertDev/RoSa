@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,45 +12,62 @@
   </head>
 
   <body
-    class="relative text-slate-600 w-screen h-screen bg-gradient-to-br from-white from-0% to-slate-100 to-10% sm:grid grid-cols-[25%,1fr]"
+    class="relative text-slate-600 dark:text-white w-screen h-screen bg-gradient-to-br from-white from-0% to-slate-100 to-10% dark:from-[#202020] dark:to-[#202020] sm:grid grid-cols-[20%,1fr]"
   >
     <aside
       id="aside"
-      class="bg-slate-100 sm:relative absolute top-0 -left-full sm:left-0 transition-all duration-300 p-2 sm:p-8 sm:grid grid-rows-[auto_1fr_auto] max-h-screen gap-4 w-full border-r border-slate-400/20"
+      class="bg-slate-100 dark:bg-[#202020] sm:relative absolute top-0 -left-full sm:left-0 transition-all duration-300 p-2 sm:p-8 sm:grid grid-rows-[auto_1fr_auto] max-h-screen gap-4 w-full border-r border-slate-500/10"
     ></aside>
     <main class="flex place-content-center w-full h-screen py-2 sm:p-0">
       <section class="sm:w-3/5 sm:p-12 flex flex-col place-content-center">
         <button
           type="button"
-          class="sm:hidden sm:absolute top-4 left-4 w-10 sm:w-12 p-1 hover:bg-slate-200 rounded-lg transition-colors duration-400"
+          class="sm:hidden sm:absolute top-4 left-4 w-10 sm:w-12 p-1 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-lg transition-colors duration-400"
           id="toggleAside2"
         >
           <img src="/svg/buttonAside.svg" alt="" />
         </button>
-        <article id="chat" class="w-full h-full grid grid-rows-[1fr_15%] gap-4">
+        <article id="chat" class="w-full h-full grid grid-rows-[1fr_16%] gap-4">
           <ul
             class="flex flex-col items-end gap-4 overflow-y-scroll no-scrollbar"
             id="messages"
           ></ul>
           <form
-            class="w-full h-full flex flex-row gap-2 sm:gap-4 p-4 sm:p-6 bg-slate-200 shadow-sm rounded-3xl"
+            class="w-full h-full flex flex-col items-end bg-slate-200 dark:bg-transparent border dark:border-[#303030] shadow-sm rounded-xl dark:hover:border-blueClaro overflow-hidden"
             id="form"
           >
-            <input
-              class="bg-transparent h-full w-full focus:outline-none focus:ring-0"
-              placeholder="Preguntale a RoSa lo que quieras..."
+            <textarea
               id="input"
               autocomplete="off"
-            />
+              placeholder="Preguntale a RoSa lo que quieras..."
+              class="bg-transparent h-full w-full focus:outline-none focus:ring-0 placeholder:text-[#4d4d4d] p-3 overflow-hidden resize-none"
+              rows="2"
+            ></textarea>
             <button
-              class="sm:p-4 pr-0 w-8 hover:scale-125 transition-all duration-300"
+              class="w-4 hover:scale-125 transition-all duration-300 mr-2 mb-2"
               type="submit"
+              id="send"
             >
               <img src="/svg/enviar.svg" alt="" />
             </button>
+            <span class="w-full h-12 bg-[#171717]"></span>
           </form>
         </article>
       </section>
     </main>
   </body>
 </html>
+<script>
+  input.addEventListener("focus", function () {
+    form.style.borderColor = "#1943FA";
+  });
+  input.addEventListener("blur", function () {
+    form.style.borderColor = "";
+  });
+  input.addEventListener("keypress", function (event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      document.getElementById("send").click();
+    }
+  });
+</script>

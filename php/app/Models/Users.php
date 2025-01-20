@@ -28,7 +28,7 @@ class Users {
 
     public static function login(Array $dates){
         $conn = BD::connect();
-        $sql = "SELECT * FROM users WHERE email = :email";
+        $sql = "SELECT users.*, user_details.fk_role FROM users JOIN user_details ON users.id = user_details.fk_user WHERE users.email = :email";
         try {
             $stmt = $conn->prepare($sql);
             $stmt->execute([
@@ -41,6 +41,7 @@ class Users {
                     'userSession' => [
                         'id' => $user['id'],
                         'names' => $user['names'],
+                        'role' => $user['fk_role'],
                     ],
                 ];
             } else {

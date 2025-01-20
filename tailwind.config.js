@@ -4,7 +4,9 @@ export default {
     "./client/**/*.{html,js}",
     "./components/**/*.{html,js}",
     "./public/js/**/*.js",
+    "./public/svg/**/*.svg",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -12,6 +14,12 @@ export default {
         blueOscuro: "#01091d",
         blueMedio: "#040427",
       },
+    },
+  },
+  variants: {
+    extend: {
+      fill: ["dark"],
+      borderColor: ["focus-within", "hover"],
     },
   },
   plugins: [],

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Usuarios</title>
+    <title>Menu</title>
     <link href="/css/output.css" rel="stylesheet" />
     <script src="/js/admin/loadAsideAdmin.js"></script>
   </head>
@@ -44,7 +44,7 @@
                   d="m12 0a12 12 0 1 0 12 12 12.013 12.013 0 0 0 -12-12zm0 22a10 10 0 1 1 10-10 10.011 10.011 0 0 1 -10 10zm5-10a1 1 0 0 1 -1 1h-3v3a1 1 0 0 1 -2 0v-3h-3a1 1 0 0 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 1 1z"
                 />
               </svg>
-              Nuevo Usuario
+              Nuevo Menu
             </button>
           </header>
           <table class="table-auto text-black w-full text-sm text-left h-32">
@@ -58,12 +58,10 @@
                     id=""
                   />
                 </th>
-                <th class="">Nombres</th>
-                <th class="">Apellidos</th>
-                <th class="">Doc. Identificación</th>
-                <th class="">Correo electronico</th>
-                <th class="">Sexo</th>
-                <th class=""></th>
+                <th class="">Codigo</th>
+                <th class="">Nombre</th>
+                <th class="">Categoria</th>
+                <th class="">Acciones</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -78,60 +76,23 @@
       id="modal"
     >
       <section
-        class="sm:w-2/4 p-4 bg-gray-300 rounded-lg shadow border border-slate-300/70 m-auto flex flex-col justify-center items-center gap-4"
+        class="p-4 bg-gray-300 rounded-lg shadow border border-slate-300/70 m-auto flex flex-col justify-center items-center gap-4"
       >
-        <h1 class="text-3xl font-bold">Crear Usuario</h1>
-        <form class="grid grid-cols-2 gap-3 w-full">
-          <input
-            class="p-3 rounded-lg border border-slate-300/70"
-            placeholder="Nombres"
-            type="text"
-            id="names"
-            required
-          />
-          <input
-            class="p-3 rounded-lg border border-slate-300/70"
-            placeholder="Apellidos"
-            type="text"
-            id="surnames"
-            required
-          />
-          <input
-            class="p-3 rounded-lg border border-slate-300/70"
-            placeholder="Doc. Identificación"
-            type="number"
-            id="identification_document"
-            required
-          />
-          <input
-            class="p-3 rounded-lg border border-slate-300/70"
-            placeholder="Correo electronico"
-            type="email"
-            id="email"
-            required
-          />
-          <input
-            class="p-3 rounded-lg border border-slate-300/70"
-            placeholder="Contraseña"
-            type="password"
-            id="password"
-            required
-          />
-          <input
-            class="p-3 rounded-lg border border-slate-300/70"
-            placeholder="Confirmar Contraseña"
-            type="password"
-            id="password_confirm"
-            required
-          />
+        <h1 class="text-3xl font-bold">Crear Menu</h1>
+        <form class="flex flex-col gap-3 w-full">
           <select
             class="p-3 rounded-lg border border-slate-300/70 cursor-pointer"
-            id="sex"
+            id="category"
           >
-            <option value="" disabled selected>Seleccionar sexo</option>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
+            <option value="" disabled selected>Seleccionar Categoria</option>
           </select>
+          <input
+            class="p-3 rounded-lg border border-slate-300/70"
+            placeholder="Nombre del menu"
+            type="text"
+            id="name"
+            required
+          />
         </form>
         <fieldset class="grid grid-cols-2 gap-3">
           <button
@@ -144,13 +105,13 @@
             id="send"
             class="p-3 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors duration-300"
           >
-            Registrar usuario
+            Registrar menu
           </button>
         </fieldset>
       </section>
     </div>
   </body>
 </html>
-<script src="/js/admin/users/show.js"></script>
-<script src="/js/admin/users/create.js"></script>
 <script src="/js/admin/showModal.js"></script>
+<script src="/js/admin/foods/create.js"></script>
+<script src="/js/admin/foods/show.js"></script>
