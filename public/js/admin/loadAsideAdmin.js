@@ -31,8 +31,8 @@
 
       links.forEach((link) => {
         section.innerHTML += `
-              <a href="${link.href}" class="flex flex-row w-full gap-2 py-3 px-4 hover:bg-slate-200 rounded-xl items-center transition-all duration-400">
-                <img class="w-5" src="${link.src}" alt="" />
+              <a href="${link.href}" class="flex flex-row w-full gap-2 py-3 px-4 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-xl items-center transition-all duration-400">
+                <img class="w-5 h-5" src="${link.src}" alt="" />
                 ${link.text}
               </a>
             `;
@@ -71,6 +71,10 @@
         }
         toggleAside2.classList.toggle("sm:hidden");
         body.classList.toggle("sm:grid");
+      });
+
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
       });
     });
 })();

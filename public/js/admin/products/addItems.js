@@ -32,7 +32,7 @@ function loadItems() {
   contentItems.innerHTML = "";
   items.forEach((item) => {
     contentItems.innerHTML += `
-        <span class="text-sm p-2 bg-slate-200 rounded-full flex gap-2 items-center justify-center">
+        <span class="text-sm p-2 bg-slate-200 dark:bg-[#444444] rounded-full flex gap-2 items-center justify-center">
           ${item[3] ?? item[1]}
           <button class="ml-2" onclick="event.preventDefault(); items.splice(${items.indexOf(
             item

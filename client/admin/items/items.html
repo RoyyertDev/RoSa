@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,11 +9,11 @@
   </head>
 
   <body
-    class="relative text-slate-600 w-screen h-screen bg-gradient-to-br from-white from-0% to-slate-100 to-10% sm:grid grid-cols-[25%,1fr]"
+    class="relative text-slate-600 dark:text-white w-screen h-screen bg-gradient-to-br from-white from-0% to-slate-100 to-10% dark:from-[#202020] dark:to-[#202020] sm:grid grid-cols-[20%,1fr]"
   >
     <aside
       id="aside"
-      class="bg-slate-100 sm:relative absolute top-0 -left-full sm:left-0 transition-all duration-300 p-2 sm:p-8 sm:grid grid-rows-[auto_1fr_auto] max-h-screen gap-4 w-full border-r border-slate-400/20"
+      class="bg-slate-100 dark:bg-[#202020] sm:relative absolute top-0 -left-full sm:left-0 transition-all duration-300 p-2 sm:p-8 sm:grid grid-rows-[auto_1fr_auto] max-h-screen gap-4 w-full border-r border-slate-500/20"
     ></aside>
     <main class="flex place-content-center w-full h-screen py-2 sm:p-0">
       <section class="sm:w-full sm:p-12 flex flex-col place-content-center">
@@ -25,33 +25,22 @@
           <img src="/svg/buttonAside.svg" alt="" />
         </button>
         <div
-          class="p-6 bg-gray-300 w-full flex flex-col gap-4 rounded-xl overflow-y-scroll h-3/4"
+          class="py-6 bg-gray-300 dark:bg-[#2c2c2c] w-full flex flex-col gap-4 rounded-xl border border-slate-500/20"
         >
-          <header class="text-black w-full text-sm">
+          <header class="text-black dark:text-white w-full text-sm px-2">
             <button
               id="buttonRegister"
-              class="bg-gray-200 text-black h-12 rounded-xl flex items-center justify-center gap-2 p-3"
+              class="bg-gray-200 dark:bg-[#444444] h-12 rounded-xl flex items-center justify-center gap-2 p-3 font-semibold"
             >
-              <svg
-                width="30px"
-                height="30px"
-                id="Layer_1"
-                height="512"
-                viewBox="0 0 24 24"
-                width="512"
-                xmlns="http://www.w3.org/2000/svg"
-                data-name="Layer 1"
-              >
-                <path
-                  d="m12 0a12 12 0 1 0 12 12 12.013 12.013 0 0 0 -12-12zm0 22a10 10 0 1 1 10-10 10.011 10.011 0 0 1 -10 10zm5-10a1 1 0 0 1 -1 1h-3v3a1 1 0 0 1 -2 0v-3h-3a1 1 0 0 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 1 1z"
-                />
-              </svg>
+              <img class="w-7" src="/svg/agregar.svg" alt="" />
               Nuevo Rubro
             </button>
           </header>
-          <table class="table-auto text-black w-full text-sm text-left h-32">
+          <table class="table-auto w-full text-sm text-left h-32">
             <thead>
-              <tr class="bg-gray-200 my-1 h-9">
+              <tr
+                class="my-1 mx-2 h-9 font-semibold border-b border-slate-500/40"
+              >
                 <th class="w-12 text-center">
                   <input
                     class="text-[#DE5976] focus:ring-0 w-5 h-5 rounded-md bg-gray-200 dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 cursor-pointer hover:bg-gray-300 dark:hover:bg-zinc-700 hover:border-gray-200 dark:hover:border-zinc-600"
@@ -78,26 +67,26 @@
       id="modal"
     >
       <section
-        class="sm:w-2/4 p-4 bg-gray-300 rounded-lg shadow border border-slate-300/70 m-auto flex flex-col justify-center items-center gap-4"
+        class="sm:w-2/4 p-4 bg-gray-300 dark:bg-[#2c2c2c] rounded-lg shadow border border-slate-300/70 dark:border-slate-500/20 m-auto flex flex-col justify-center items-center gap-4"
       >
         <h1 class="text-3xl font-bold">Crear Rubro</h1>
         <form class="grid grid-cols-2 gap-3 w-full">
           <input
-            class="p-3 rounded-lg border border-slate-300/70"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
             placeholder="Nombre"
             type="text"
             id="name"
             required
           />
           <input
-            class="p-3 rounded-lg border border-slate-300/70"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
             placeholder="Contenido Gr"
             type="text"
             id="content_gr"
             required
           />
           <select
-            class="p-3 rounded-lg border border-slate-300/70 cursor-pointer"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
             id="extra"
           >
             <option value="" disabled selected>¿Puede ser extra?</option>
@@ -105,14 +94,14 @@
             <option value="0">No</option>
           </select>
           <input
-            class="p-3 rounded-lg border border-slate-300/70"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
             placeholder="Precio unitario"
             type="number"
             id="prize_unit"
             required
           />
           <select
-            class="p-3 rounded-lg border border-slate-300/70 cursor-pointer"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
             id="fk_foods"
           >
             <option value="" disabled selected>Seleccionar menu</option>
@@ -121,13 +110,13 @@
         <fieldset class="grid grid-cols-2 gap-3">
           <button
             id="abort"
-            class="p-3 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors duration-300"
+            class="p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300"
           >
             Cancelar
           </button>
           <button
             id="send"
-            class="p-3 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors duration-300"
+            class="p-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
           >
             Registrar usuario
           </button>
