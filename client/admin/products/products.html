@@ -62,7 +62,7 @@
       </section>
     </main>
 
-    <!-- modal -->
+    <!-- modal create -->
     <div
       class="absolute top-0 left-0 w-screen h-screen hidden bg-black/50 justify-center items-center"
       id="modal"
@@ -157,9 +157,66 @@
         </fieldset>
       </section>
     </div>
+
+    <!-- modal -->
+    <div
+      class="absolute top-0 left-0 w-screen h-screen hidden bg-black/50 justify-center items-center"
+      id="modalEdit"
+    >
+      <section
+        class="sm:w-2/4 p-4 bg-gray-300 dark:bg-[#2c2c2c] rounded-lg shadow border border-slate-300/70 dark:border-slate-500/20 m-auto flex flex-col justify-center items-center gap-4"
+      >
+        <h1 class="text-3xl font-bold">Editar Producto</h1>
+        <form class="grid grid-cols-2 gap-3 w-full">
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="fk_foodsEdit"
+          >
+            <option value="" disabled selected>Seleccionar Menu</option>
+          </select>
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Nombre del menu"
+            type="text"
+            id="nameEdit"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Descripción del menu"
+            type="text"
+            id="descriptionEdit"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Digite el precio"
+            type="number"
+            id="prizeEdit"
+            required
+          />
+        </form>
+        <fieldset class="grid grid-cols-2 gap-3">
+          <button
+            id="abortEdit"
+            class="p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300"
+          >
+            Cancelar
+          </button>
+          <button
+            id="sendEdit"
+            class="p-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
+          >
+            Editar producto
+          </button>
+        </fieldset>
+      </section>
+    </div>
   </body>
 </html>
 <script src="/js/admin/showModal.js"></script>
 <script src="/js/admin/products/create.js"></script>
+<script src="/js/admin/products/update.js"></script>
+<script src="/js/admin/products/delete.js"></script>
 <script src="/js/admin/products/show.js"></script>
 <script src="/js/admin/products/addItems.js"></script>

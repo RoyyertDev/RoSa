@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/api/categories", {
+  fetch("/api/foods", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

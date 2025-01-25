@@ -88,4 +88,62 @@ class Products {
         $conn = null;
         echo json_encode($response);
     }
+    public static function find (int $id) {
+        $conn = BD::connect();
+        $sql = "SELECT * FROM products WHERE id = :id";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            $product = $stmt->fetch();
+            $response = $product;
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];  
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
+    public static function update(Array $dates, int $id) {
+        $conn = BD::connect();
+        $sql = "UPDATE products SET fk_foods = :fk_foods, name = :name, description = :description, prize = :prize WHERE id = :id";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute($dates + ['id' => $id]);
+            $response = [
+                'status' => "success",
+                'message' => "Producto actualizado exitosamente"
+            ];
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];  
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
+    public static function delete(int $id) {
+        $conn = BD::connect();
+        $sql = "DELETE FROM products WHERE id = :id";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            $response = [
+                'status' => "success",
+                'message' => "Producto eliminado exitosamente"
+            ];
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];  
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
 }

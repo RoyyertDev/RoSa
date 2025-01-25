@@ -23,4 +23,12 @@ class Users {
     public static function show(){
         ModelUsers::show();
     }
+
+    public static function find(int $id){
+        ModelUsers::find($id);
+    }
+
+    public static function update(Array $dates, int $id){
+        ModelUsers::update($dates, $id);
+    }
 }

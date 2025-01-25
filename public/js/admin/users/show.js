@@ -27,6 +27,13 @@ fetch("/api/users", {
             <td class="flex h-full items-center">
               <button
                 class="h-full rounded-xl flex items-center justify-center gap-2 p-3 hover:scale-125 transition-all duration-300"
+                onclick="addDetails('${data.id}')"
+              >
+                <img class="w-4" src="/svg/dashboard/lapiz.svg" alt="" />
+              </button>
+              <button
+                class="h-full rounded-xl flex items-center justify-center gap-2 p-3 hover:scale-125 transition-all duration-300"
+                onclick="editUserModal('${data.id}')"
               >
                 <img class="w-4" src="/svg/editar.svg" alt="" />
               </button>

@@ -72,4 +72,45 @@ class Users {
             echo "Error de conexion: " . $e->getMessage();
         }
     }
+
+    public static function find(int $id){
+        $conn = BD::connect();
+        $sql = "SELECT * FROM users WHERE id = :id";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            $user = $stmt->fetch();
+            unset($user['password']);
+            $response = $user;
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
+
+    public static function update(Array $dates, int $id){
+        $conn = BD::connect();
+        $sql = "UPDATE users SET names = :names, surnames = :surnames, identification_document = :identification_document, email = :email, sex = :sex WHERE id = :id";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute($dates + ['id' => $id]);
+            $response = [
+                'status' => "success",
+                'message' => "Usuario actualizado exitosamente"
+            ];
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
 }

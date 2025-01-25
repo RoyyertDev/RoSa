@@ -25,11 +25,13 @@ fetch("/api/items", {
             <td class="flex h-full items-center">
               <button
                 class="h-full rounded-xl flex items-center justify-center gap-2 p-3 hover:scale-125 transition-all duration-300"
+                onclick="loadModal('${data.id}')"
               >
                 <img class="w-4" src="/svg/editar.svg" alt="" />
               </button>
               <button
                 class="h-full rounded-xl flex items-center justify-center gap-2 p-3 hover:scale-125 transition-all duration-300"
+                onclick="deleteItem('${data.id}')"
               >
                 <img class="w-5" src="/svg/dashboard/basura.svg" alt="" />
               </button>

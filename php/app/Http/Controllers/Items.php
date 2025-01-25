@@ -19,4 +19,13 @@ class Items
     {
         ModelItems::getItemForIdFood($id);
     }
+    public static function find(int $id){
+        ModelItems::find($id);
+    }
+    public static function update(Array $dates, int $id){
+        ModelItems::update($dates, $id);
+    }
+    public static function delete(int $id){
+        ModelItems::delete($id);
+    }
 }

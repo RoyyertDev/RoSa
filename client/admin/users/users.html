@@ -63,7 +63,7 @@
       </section>
     </main>
 
-    <!-- modal -->
+    <!-- modal create -->
     <div
       class="absolute top-0 left-0 w-screen h-screen hidden bg-black/50 justify-center items-center"
       id="modal"
@@ -100,6 +100,7 @@
             type="email"
             id="email"
             required
+            autocomplete="email"
           />
           <input
             class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
@@ -107,6 +108,7 @@
             type="password"
             id="password"
             required
+            autocomplete="new-password"
           />
           <input
             class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
@@ -114,6 +116,7 @@
             type="password"
             id="password_confirm"
             required
+            autocomplete="new-password"
           />
           <select
             class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
@@ -140,8 +143,148 @@
         </fieldset>
       </section>
     </div>
+    <!-- modal details -->
+    <div
+      class="absolute top-0 left-0 w-screen h-screen hidden bg-black/50 justify-center items-center"
+      id="modalDetails"
+    >
+      <section
+        class="sm:w-2/4 p-4 bg-gray-300 dark:bg-[#2c2c2c] rounded-lg shadow border border-slate-300/70 dark:border-slate-500/20 m-auto flex flex-col justify-center items-center gap-4"
+      >
+        <h1 class="text-3xl font-bold">Agregar detalles</h1>
+        <form class="grid grid-cols-2 gap-3 w-full">
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="fk_role"
+          >
+            <option value="" disabled selected>Seleccionar rol</option>
+          </select>
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="fk_countries"
+          >
+            <option value="" disabled selected>Seleccionar pais</option>
+          </select>
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="fk_provinces"
+          >
+            <option value="" disabled selected>Seleccionar estado</option>
+          </select>
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="fk_cities"
+          >
+            <option value="" disabled selected>Seleccionar ciudad</option>
+          </select>
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Código Postal"
+            type="number"
+            id="zip_code"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Sitio de referencia"
+            type="text"
+            id="site_reference"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Teléfono"
+            type="number"
+            id="phone"
+            required
+          />
+        </form>
+        <fieldset class="grid grid-cols-2 gap-3">
+          <button
+            id="abortDetails"
+            onclick="abortDetails()"
+            class="p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300"
+          >
+            Cancelar
+          </button>
+          <button
+            id="saveDetails"
+            onclick="saveDetails()"
+            class="p-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
+          >
+            Guardar detalles
+          </button>
+        </fieldset>
+      </section>
+    </div>
+
+    <!-- modal edit -->
+    <div
+      class="absolute top-0 left-0 w-screen h-screen hidden bg-black/50 justify-center items-center"
+      id="modalEdit"
+    >
+      <section
+        class="sm:w-2/4 p-4 bg-gray-300 dark:bg-[#2c2c2c] rounded-lg shadow border border-slate-300/70 dark:border-slate-500/20 m-auto flex flex-col justify-center items-center gap-4"
+      >
+        <h1 class="text-3xl font-bold">Editar Usuario</h1>
+        <form class="grid grid-cols-2 gap-3 w-full">
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Nombres"
+            type="text"
+            id="namesEdit"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Apellidos"
+            type="text"
+            id="surnamesEdit"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Doc. Identificación"
+            type="number"
+            id="identification_documentEdit"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Correo electronico"
+            type="email"
+            id="emailEdit"
+            required
+          />
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="sexEdit"
+          >
+            <option value="" disabled selected>Seleccionar sexo</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+        </form>
+        <fieldset class="grid grid-cols-2 gap-3">
+          <button
+            id="abortEdit"
+            class="p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300"
+          >
+            Cancelar
+          </button>
+          <button
+            id="sendEdit"
+            class="p-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
+          >
+            Guardar usuario
+          </button>
+        </fieldset>
+      </section>
+    </div>
   </body>
 </html>
 <script src="/js/admin/users/show.js"></script>
 <script src="/js/admin/users/create.js"></script>
+<script src="/js/admin/users/update.js"></script>
+<script src="/js/admin/users/addDetails.js"></script>
 <script src="/js/admin/showModal.js"></script>

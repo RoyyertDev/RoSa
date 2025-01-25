@@ -18,4 +18,13 @@ class Products
     public static function showProductItems(int $dates) {
         ModelProducts::showProductItems($dates);
     }
+    public static function find(int $id) {
+        ModelProducts::find($id);
+    }
+    public static function update(Array $dates, int $id) {
+        ModelProducts::update($dates, $id);
+    }
+    public static function delete(int $id) {
+        ModelProducts::delete($id);
+    }
 }

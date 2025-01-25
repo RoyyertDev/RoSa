@@ -123,8 +123,72 @@
         </fieldset>
       </section>
     </div>
+    <!-- modal edit -->
+    <div
+      class="absolute top-0 left-0 w-screen h-screen hidden bg-black/50 justify-center items-center"
+      id="modalEdit"
+    >
+      <section
+        class="sm:w-2/4 p-4 bg-gray-300 dark:bg-[#2c2c2c] rounded-lg shadow border border-slate-300/70 dark:border-slate-500/20 m-auto flex flex-col justify-center items-center gap-4"
+      >
+        <h1 class="text-3xl font-bold">Editar Rubro</h1>
+        <form class="grid grid-cols-2 gap-3 w-full">
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Nombre"
+            type="text"
+            id="nameEdit"
+            required
+          />
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Contenido Gr"
+            type="text"
+            id="content_grEdit"
+            required
+          />
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="extraEdit"
+          >
+            <option value="" disabled selected>¿Puede ser extra?</option>
+            <option value="1">Si</option>
+            <option value="0">No</option>
+          </select>
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444]"
+            placeholder="Precio unitario"
+            type="number"
+            id="prize_unitEdit"
+            required
+          />
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer"
+            id="fk_foodsEdit"
+          >
+            <option value="" disabled selected>Seleccionar menu</option>
+          </select>
+        </form>
+        <fieldset class="grid grid-cols-2 gap-3">
+          <button
+            id="abortEdit"
+            class="p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors duration-300"
+          >
+            Cancelar
+          </button>
+          <button
+            id="sendEdit"
+            class="p-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors duration-300"
+          >
+            Editar rubro
+          </button>
+        </fieldset>
+      </section>
+    </div>
   </body>
 </html>
 <script src="/js/admin/showModal.js"></script>
 <script src="/js/admin/items/create.js"></script>
 <script src="/js/admin/items/show.js"></script>
+<script src="/js/admin/items/update.js"></script>
+<script src="/js/admin/items/delete.js"></script>

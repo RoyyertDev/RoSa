@@ -11,4 +11,13 @@ class Foods {
     public static function save(Array $dates){
         ModelFoods::save($dates); 
     }
+    public static function find(int $id){
+        ModelFoods::find($id);
+    }
+    public static function update(Array $dates, int $id){
+        ModelFoods::update($dates, $id); 
+    }
+    public static function delete(int $id){
+        ModelFoods::delete($id); 
+    }
 }
