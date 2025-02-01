@@ -8,7 +8,6 @@ function loadModal(id) {
   loadDataItem(idProductEdit);
   modalEdit.classList.remove("hidden");
   modalEdit.classList.add("flex");
-  console.log(document.getElementById("fk_foodsEdit").value);
 }
 
 function getFoods() {

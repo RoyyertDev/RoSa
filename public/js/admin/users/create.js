@@ -46,7 +46,6 @@ send.addEventListener("click", () => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.status === "error") {
         alert(data.message);
         return;

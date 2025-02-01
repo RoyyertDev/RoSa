@@ -8,9 +8,17 @@ export async function loadChats(tittle) {
       ul.insertAdjacentHTML(
         "afterbegin",
         `
-        <li class="w-full px-4 py-2 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] transition-all duration-400 rounded-lg cursor-pointer truncate">
-          ${tittle}
-        </li>
+        <a href="/?chat=${chat.id}" class="w-full px-4 py-2 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] transition-all duration-400 rounded-lg cursor-pointer relative group flex items-center justify-between gap-1">
+            <p class="truncate">
+              ${chat.title}
+            </p>
+            <button 
+              class="opacity-0 group-hover:opacity-100 hover:bg-slate-300 dark:hover:bg-[#3f3f3f] transition-all duration-400 rounded-md p-1"
+              onclick="deleteChat(${chat.id})"
+            >
+              <img class="max-w-4 max-h-4" src="/svg/basura.svg" alt="" />
+            </button>
+          </a>
       `
       );
     } else {
@@ -30,9 +38,17 @@ export async function loadChats(tittle) {
         ul.insertAdjacentHTML(
           "beforeend",
           `
-          <li class="w-full px-4 py-2 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] transition-all duration-400 rounded-lg cursor-pointer truncate">
-            ${chat.title}
-          </li>
+          <a href="/?chat=${chat.id}" class="w-full px-4 py-2 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] transition-all duration-400 rounded-lg cursor-pointer relative group flex items-center justify-between gap-1">
+            <p class="truncate">
+              ${chat.title}
+            </p>
+            <button 
+              class="opacity-0 group-hover:opacity-100 hover:bg-slate-300 dark:hover:bg-[#3f3f3f] transition-all duration-400 rounded-md p-1"
+              onclick="deleteChat(${chat.id})"
+            >
+              <img class="max-w-4 max-h-4" src="/svg/basura.svg" alt="" />
+            </button>
+          </a>
         `
         );
       });

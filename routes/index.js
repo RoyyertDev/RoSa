@@ -10,7 +10,6 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.sendFile(process.cwd() + "/client/index.html");
-  console.log(req.session);
 });
 
 router.get("/admin/dashboard", (req, res) => {

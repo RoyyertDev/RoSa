@@ -49,4 +49,24 @@ class Chats {
         $conn = null;
         echo json_encode($response);
     }
+    public static function delete(int $id) {
+        $conn = BD::connect();
+        $sql = "DELETE FROM chats WHERE id = :id";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            $response = [
+                'status' => "success",
+                'message' => "Chat eliminado exitosamente"
+            ];
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
 }

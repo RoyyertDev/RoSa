@@ -48,6 +48,9 @@ if (preg_match('/\/cities\/(\w+)/', $uri, $matches)) {
 if (preg_match('/\/foods\/(\w+)/', $uri, $matches)) { 
     $id = $matches[1];
 }
+if (preg_match('/\/chats\/(\w+)/', $uri, $matches)) { 
+    $id = $matches[1];
+}
 
 switch ($uri) {
     case '/login':
@@ -99,9 +102,13 @@ switch ($uri) {
             case 'POST':
                 Chats::save($dates);
             break;
-            // case 'GET':
-            //     Chats::show($dates);
-            // break;
+        }
+    break;
+    case '/chats/'.$id: 
+        switch ($method) {
+            case 'DELETE':
+                Chats::delete($id);
+            break;
         }
     break;
     case '/userChats':

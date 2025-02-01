@@ -70,4 +70,29 @@
       document.getElementById("send").click();
     }
   });
+
+  function deleteChat(id) {
+    const confirm = window.confirm(
+      `¿Desea eliminar el chat ${id}? Esta acción es irreversible?`
+    );
+    if (confirm) {
+      fetch(`/api/chats/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "error") {
+            alert(data.message);
+            return;
+          } else if (data.status === "success") {
+            alert(data.message);
+            window.location.reload();
+            return;
+          }
+        });
+    }
+  }
 </script>

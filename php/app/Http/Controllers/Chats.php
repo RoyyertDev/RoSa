@@ -12,4 +12,7 @@ class Chats
     public static function show(Array $dates) {
         ModelChats::show($dates);
     }
+    public static function delete(int $id) {
+        ModelChats::delete($id);
+    }
 }
