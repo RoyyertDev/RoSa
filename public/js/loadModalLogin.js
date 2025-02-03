@@ -1,4 +1,11 @@
 import { login } from "../../middleware/auth.js";
+import {
+  createUser,
+  createDetails,
+  obtainCountries,
+  obtainProvinces,
+  obtainCities,
+} from "./registerUser.js";
 function loadLoginModal() {
   fetch("/components/loginModal.html")
     .then((response) => response.text())
@@ -7,9 +14,25 @@ function loadLoginModal() {
       const email = document.getElementById("email");
       const password = document.getElementById("password");
       const buttonLogin = document.getElementById("buttonLogin");
+      //Creacion de usuario
+      const sendCreate = document.getElementById("sendCreate");
+      const sendCreateDetails = document.getElementById("sendCreateDetails");
       buttonLogin.addEventListener("click", async () => {
         const logeo = await login(email.value, password.value);
         logeo.success === true ? (window.location.href = "/") : null;
+      });
+      sendCreate.addEventListener("click", () => {
+        createUser();
+      });
+      obtainCountries();
+      document.getElementById("fk_countries").addEventListener("change", () => {
+        obtainProvinces();
+      });
+      document.getElementById("fk_provinces").addEventListener("change", () => {
+        obtainCities();
+      });
+      sendCreateDetails.addEventListener("click", () => {
+        createDetails();
       });
     });
 }

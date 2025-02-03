@@ -56,6 +56,251 @@
         </article>
       </section>
     </main>
+    <!-- modal register 1 -->
+    <section
+      class="absolute top-0 left-0 w-screen h-screen bg-black/50 hidden flex-col justify-center items-center gap-4"
+      id="registerModal"
+    >
+      <img class="w-12" src="/svg/logo.svg" alt="" />
+      <div
+        class="grid grid-cols-2 gap-4 bg-slate-100 dark:bg-[#2c2c2c] p-4 sm:p-8 rounded-3xl shadow-2xl md:w-1/3 lg:w-2/4"
+      >
+        <div class="col-span-2">
+          <h1
+            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+          >
+            Crea tu cuenta
+          </h1>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            ¿Ya tienes una cuenta?
+            <a href="/" class="font-medium text-blue-600 hover:underline">
+              Inicia sesión aqui.
+            </a>
+          </p>
+        </div>
+        <fieldset>
+          <label
+            for="names"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Nombres</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="e.g Royyert Alfonso"
+            type="text"
+            id="names"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="surnames"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Apellidos</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="e.g Ibarra Espinoza"
+            type="text"
+            id="surnames"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="identification_document"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Cédula</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="e.g 30416017"
+            type="number"
+            id="identification_document"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="emailCreate"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Correo</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="Correo electronico"
+            type="email"
+            id="emailCreate"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="passwordCreate"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Contraseña</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="••••••••"
+            type="password"
+            id="passwordCreate"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="password_confirm"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Confirmar contraseña</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="••••••••"
+            type="password"
+            id="password_confirm"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="sex"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Sexo
+          </label>
+          <select
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] cursor-pointer w-full"
+            id="sex"
+          >
+            <option value="" disabled selected>Seleccionar sexo</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+        </fieldset>
+        <button
+          type="button"
+          class="col-span-2 w-full text-white font-medium text-sm p-3 rounded-lg bg-slate-300 dark:bg-blue-600 hover:bg-slate-400 dark:hover:bg-blue-700 transition-colors duration-300"
+          id="sendCreate"
+        >
+          Sigueiente
+        </button>
+      </div>
+    </section>
+
+    <!-- modal register details -->
+
+    <section
+      class="absolute top-0 left-0 w-screen h-screen bg-black/50 hidden flex-col justify-center items-center gap-4"
+      id="modalDetails"
+    >
+      <img class="w-12" src="/svg/logo.svg" alt="" />
+      <div
+        class="grid grid-cols-2 gap-4 bg-slate-100 dark:bg-[#2c2c2c] p-4 sm:p-8 rounded-3xl shadow-2xl md:w-1/3 lg:w-2/4"
+      >
+        <div class="col-span-2">
+          <h1
+            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+          >
+            Solo un paso más
+          </h1>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Terminemos de añadir algunas cosas a tu perfil.
+          </p>
+        </div>
+        <fieldset>
+          <label
+            for="fk_countries"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Pais</label
+          >
+          <select
+            name="fk_countries"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            id="fk_countries"
+          >
+            <option value="" disabled selected>Seleccionar pais</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <label
+            for="fk_provinces"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Estado</label
+          >
+          <select
+            name="fk_provinces"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            id="fk_provinces"
+          >
+            <option value="" disabled selected>Seleccionar estado</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <label
+            for="fk_cities"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Ciudad</label
+          >
+          <select
+            name="fk_cities"
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            id="fk_cities"
+          >
+            <option value="" disabled selected>Seleccionar ciudad</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <label
+            for="zip_code"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Código Postal</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="Código Postal"
+            type="number"
+            id="zip_code"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="site_reference"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Lugar de referencia</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="Lugar de referencia"
+            type="text"
+            id="site_reference"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label
+            for="phone"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Teléfono</label
+          >
+          <input
+            class="p-3 rounded-lg border border-slate-300/70 dark:border-slate-500/20 dark:bg-[#444444] w-full"
+            placeholder="Teléfono"
+            type="number"
+            id="phone"
+            required
+          />
+        </fieldset>
+        <button
+          type="button"
+          class="col-span-2 w-full text-white font-medium text-sm p-3 rounded-lg bg-slate-300 dark:bg-blue-600 hover:bg-slate-400 dark:hover:bg-blue-700 transition-colors duration-300"
+          id="sendCreateDetails"
+        >
+          Registrar
+        </button>
+      </div>
+    </section>
   </body>
 </html>
 <script>
@@ -95,5 +340,14 @@
           }
         });
     }
+  }
+
+  function openRegisterModal() {
+    const registerModal = document.getElementById("registerModal");
+    const loginModal = document.getElementById("modal");
+    registerModal.classList.remove("hidden");
+    registerModal.classList.add("flex");
+    loginModal.classList.remove("flex");
+    loginModal.classList.add("hidden");
   }
 </script>

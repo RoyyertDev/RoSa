@@ -12,9 +12,11 @@ class Users {
         try {
             $stmt = $conn->prepare($sql);
             $stmt->execute($input);
+            $userId = $conn->lastInsertId();
             $response = [
                 'status' => "success",
-                'message' => "Usuario registrado exitosamente"
+                'message' => "Usuario registrado exitosamente",
+                'user_id' => $userId
             ];
         } catch (PDOException $e) {
             $response = [
