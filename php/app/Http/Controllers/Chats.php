@@ -15,4 +15,7 @@ class Chats
     public static function delete(int $id) {
         ModelChats::delete($id);
     }
+    public static function findMessages(int $id) {
+        ModelChats::findMessages($id);
+    }
 }

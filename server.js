@@ -7,7 +7,9 @@ import { createServer } from "node:http";
 import { PORT } from "./config/config.js";
 import { router } from "./routes/index.js";
 import { handleMessage } from "./controllers/messageController.js";
+import { loadMessageOfChat } from "./controllers/loadMessageOfChat.js";
 import { authVerify } from "./middleware/auth.js";
+import { roleVerify } from "./middleware/role.js";
 
 const app = express();
 const server = createServer(app);
@@ -20,9 +22,17 @@ io.on("connection", (socket) => {
     console.log("A user disconnected");
   });
 
-  socket.on("message", async (message, title, user) =>
-    handleMessage(socket, message, title, user)
-  );
+  socket.on("message", async (message, title, user, conversation) => {
+    handleMessage(socket, message, title, user, conversation);
+  });
+
+  socket.on("loadChat", async (data) => {
+    const messages = await loadMessageOfChat(data);
+    messages.forEach((message) => {
+      handleMessage(socket, message);
+    });
+    socket.idChat = data;
+  });
 });
 
 app.use(express.json());
@@ -38,7 +48,7 @@ app.use(logger("dev"));
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use("/components", express.static(path.join(process.cwd(), "components")));
 app.use("/middleware", express.static(path.join(process.cwd(), "middleware")));
-app.use("/admin", authVerify, router);
+app.use("/admin", authVerify, roleVerify, router);
 app.use("/", router);
 server.listen(PORT, () => {
   console.log(`Corriendo en el puerto http://localhost:${PORT}`);

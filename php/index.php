@@ -106,6 +106,9 @@ switch ($uri) {
     break;
     case '/chats/'.$id: 
         switch ($method) {
+            case 'GET':
+                Chats::findMessages($id);
+            break;
             case 'DELETE':
                 Chats::delete($id);
             break;

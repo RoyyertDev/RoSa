@@ -69,4 +69,25 @@ class Chats {
         $conn = null;
         echo json_encode($response);
     }
+    public static function findMessages(int $id) {
+        $conn = BD::connect();
+        $sql = "SELECT * FROM messages WHERE fk_chats = :fk_chats ORDER BY id ASC";
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['fk_chats' => $id]);
+            $response = [
+                'status' => "success",
+                'message' => "Mensajes obtenidos exitosamente",
+                'messages' => $stmt->fetchAll()
+            ];
+        } catch (PDOException $e) {
+            $response = [
+                'status' => "error",
+                'message' => "Error de conexion: " . $e->getMessage(),
+                'error' => $e
+            ];
+        }
+        $conn = null;
+        echo json_encode($response);
+    }
 }

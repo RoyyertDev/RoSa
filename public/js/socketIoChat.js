@@ -8,7 +8,21 @@ const form = document.getElementById("form");
 const input = document.getElementById("input");
 const messages = document.getElementById("messages");
 
+const idParams = new URLSearchParams(window.location.search).get("chat");
+idParams && socket.emit("loadChat", idParams);
+socket.on("newChat", (idChat) => {
+  window.history.pushState({}, "", `/?chat=${idChat}`);
+});
+
+let conversation = [];
+
 socket.on("message", (message) => {
+  if (message.msjAll) {
+    conversation.push({
+      message: message.msjAll,
+      from: message.from,
+    });
+  }
   let active = messages.querySelector(".active");
 
   if (!active) {
@@ -48,14 +62,14 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   if (input.value !== "") {
+    const titleChat = input.value.substring(0, 50);
+    const user = await obtainUserLogin();
     if (messages.childElementCount === 0) {
-      const titleChat = input.value.substring(0, 50);
-      const user = await obtainUserLogin();
       socket.emit("message", input.value, titleChat, user.id);
       input.value = "";
       loadChats(titleChat);
     } else {
-      socket.emit("message", input.value);
+      socket.emit("message", input.value, titleChat, user.id, conversation);
       input.value = "";
     }
   }

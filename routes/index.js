@@ -8,7 +8,7 @@ import products from "./admin/products.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   res.sendFile(process.cwd() + "/client/index.html");
 });
 

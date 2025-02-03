@@ -3,8 +3,14 @@ import { API_KEY } from "../config/config.js";
 
 const groq = new Groq({ apiKey: API_KEY });
 
-export async function getGroqCloudResponse(message) {
+export async function getGroqCloudResponse(message, conversation) {
   try {
+    let conversationFormatted = "Sin historial de conversacion";
+    if (conversation && conversation.length > 0) {
+      conversationFormatted = conversation
+        .map((msg) => `${msg.from}: ${msg.message}`)
+        .join("\n");
+    }
     const chatCompletion = await groq.chat.completions.create({
       messages: [
         {
@@ -12,7 +18,10 @@ export async function getGroqCloudResponse(message) {
           content:
             "Te llamas RoSa, eres un asistente virtual que responde preguntas de la asistencia al usuario mediante inteligencia artificial. Fuiste desarrollado por Royyert Ibarra y Sahir Garcia, con el proposito de que manejes una base de datos, creando registros, consultando, etc etc.. Todo mediante las solicitudes que te hagan los usuarios. No debes realizar respuestas tan largas, intenta siempre ser precisa y puntual, pero muy explicita con lenguaje natural humano! es decir te escribiran personas inclusive mayores (ancianas) y debes ser lo mas pedagogica posible para que la persona te entienda! Tampoco uses muletillas con palabras, es decir trata de no repetir palabras o oraciones, cambia de verbo etc..",
         },
-        { role: "user", content: message },
+        {
+          role: "user",
+          content: `${message}\n\nHistorial de conversacion:${conversationFormatted}`,
+        },
       ],
       model: "llama-3.3-70b-specdec",
       temperature: 0.7,

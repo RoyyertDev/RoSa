@@ -1,13 +1,34 @@
 import { getGroqCloudResponse } from "../services/groqService.js";
 import { createChat } from "../controllers/chatControllers.js";
 
-export async function handleMessage(socket, message, title, user) {
+export async function handleMessage(
+  socket,
+  message,
+  title,
+  user,
+  conversation
+) {
   if (!socket.idChat && title && user) {
     socket.idChat = await createChat(title, user);
+    socket.emit("newChat", socket.idChat);
   }
-  socket.emit("message", { message: message, from: "User", complete: true });
+  if (message.fk_author) {
+    socket.emit("message", {
+      message: message.content,
+      from: message.fk_author === 1 ? "User" : "Bot",
+      complete: true,
+      msjAll: message.content,
+    });
+    return;
+  }
+  socket.emit("message", {
+    message: message,
+    from: "User",
+    complete: true,
+    msjAll: message,
+  });
   saveMessage(socket.idChat, 1, message);
-  const response = await getGroqCloudResponse(message);
+  const response = await getGroqCloudResponse(message, conversation);
   let messageFull = "";
   for await (const chunk of response) {
     const content = chunk.choices[0]?.delta?.content || "";
@@ -15,7 +36,12 @@ export async function handleMessage(socket, message, title, user) {
     messageFull = messageFull + content;
   }
   saveMessage(socket.idChat, 2, messageFull);
-  socket.emit("message", { message: "", from: "Bot", complete: true });
+  socket.emit("message", {
+    message: "",
+    from: "Bot",
+    complete: true,
+    msjAll: messageFull,
+  });
 }
 
 function saveMessage(idChat, from, message) {
