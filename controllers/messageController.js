@@ -40,9 +40,11 @@ export async function handleMessage(
   }
   conversation.push({ message: message, from: "User" });
   conversation.push({ message: messageFull, from: "SQL" });
+  console.log(messageFull);
 
   // Le enviamo la instancia SQL al backend
   const responseFetch = await sqlRequest(messageFull);
+  console.log(responseFetch);
   conversation.push({ message: responseFetch, from: "Respuesta SQL" });
 
   // // Le enviamos la respuesta del backed (success or error) a la ia para que genere una nueva un mensaje para el fronted
@@ -60,6 +62,7 @@ export async function handleMessage(
     socket.emit("message", { message: content, from: "Bot" });
     messageFull2 = messageFull2 + content;
   }
+  console.log(messageFull2);
 
   // Guardamos el mensaje del bot hacia el usuario en la base de datos
   saveMessage(socket.idChat, 2, messageFull2);
