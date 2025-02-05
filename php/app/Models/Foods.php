@@ -8,7 +8,9 @@ use PDOException;
 class Foods {
     public static function show() {
         $conn = BD::connect();
-        $sql = "SELECT * FROM foods";
+        $sql = "SELECT f.id, f.name, c.name AS fk_categories
+                FROM foods f
+                JOIN categories c ON f.fk_categories = c.id;";
         try {
             $stmt = $conn->prepare($sql);
             $stmt->execute();

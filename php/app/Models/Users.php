@@ -43,6 +43,7 @@ class Users {
                     'userSession' => [
                         'id' => $user['id'],
                         'names' => $user['names'],
+                        'surnames' => $user['surnames'],
                         'role' => $user['fk_role'],
                     ],
                 ];

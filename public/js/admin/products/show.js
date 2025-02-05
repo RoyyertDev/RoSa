@@ -23,7 +23,7 @@ fetch("/api/products", {
             <td class="">${data.name}</td>
             <td class="">${data.description}</td>
             <td class="">${data.prize}</td>
-            <td class="flex h-12 gap-2 items-center">
+            <td class="flex h-full gap-2 items-center">
               <button
                 class="h-full rounded-xl flex items-center justify-center gap-2 p-3 hover:scale-125 transition-all duration-300"
                 onclick="addItemModal('${data.id}', '${data.fk_foods}')"

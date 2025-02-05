@@ -31,9 +31,35 @@ export async function loadChats(tittle) {
             ` <a href="/admin/users" class="flex flex-row w-full gap-2 py-3 px-4 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-xl items-center transition-all duration-400" > <img class="w-5 h-5" src="/svg/diseno-fluido.svg" alt="" /> Dashboard </a> `
           );
       }
-      document.getElementById("theme-toggle").addEventListener("click", () => {
+      const themeToggleButton = document.getElementById("theme-toggle");
+      const svgImages = document.querySelectorAll("img[src*='/svg/']");
+
+      function toggleTheme() {
+        // Cambiar el tema oscuro/claro
         document.documentElement.classList.toggle("dark");
-      });
+
+        svgImages.forEach((img) => {
+          const src = img.getAttribute("src");
+
+          // Verifica si el src contiene "/svg/dark/"
+          if (src.includes("/svg/")) {
+            let newSrc;
+
+            // Si está en modo oscuro, quita "/dark", si no, agrégalo
+            if (src.includes("/svg/dark/")) {
+              newSrc = src.replace("/svg/dark/", "/svg/");
+            } else {
+              newSrc = src.replace("/svg/", "/svg/dark/");
+            }
+
+            // Actualiza el src de la imagen
+            img.setAttribute("src", newSrc);
+          }
+        });
+      }
+
+      themeToggleButton.addEventListener("click", toggleTheme);
+
       chatsUser.forEach((chat) => {
         ul.insertAdjacentHTML(
           "beforeend",

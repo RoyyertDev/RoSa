@@ -12,6 +12,7 @@ use App\Http\Controllers\RolUsers;
 use App\Http\Controllers\Countries;
 use App\Http\Controllers\Provinces;
 use App\Http\Controllers\Cities;
+use App\Http\Controllers\Payments;
 use App\Http\Controllers\SqlRequest;
 
 require_once __DIR__ . '/config/autoload.php';
@@ -50,6 +51,9 @@ if (preg_match('/\/foods\/(\w+)/', $uri, $matches)) {
     $id = $matches[1];
 }
 if (preg_match('/\/chats\/(\w+)/', $uri, $matches)) { 
+    $id = $matches[1];
+}
+if (preg_match('/\/payments\/(\w+)/', $uri, $matches)) { 
     $id = $matches[1];
 }
 
@@ -261,6 +265,13 @@ switch ($uri) {
             break; 
             case 'GET':
                 SqlRequest::save($dates);
+            break; 
+        }
+    break;
+    case '/payments/'.$id:
+        switch ($method) {
+            case 'GET':
+                Payments::show($id);
             break; 
         }
     break;

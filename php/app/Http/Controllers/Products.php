@@ -9,7 +9,7 @@ class Products
     public static function show() {
         ModelProducts::show();
     }
-    public static function save(Array $dates) {
+    public static function save($dates) {
         ModelProducts::save($dates);
     }
     public static function saveProductItems(Array $dates) {

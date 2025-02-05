@@ -5,6 +5,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 # Y si el archivo solicitado no es un directorio
 RewriteCond %{REQUEST_FILENAME} !-d
 # Y si la solicitud no es para un archivo con las siguientes extensiones
-RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|ico)$ [NC]
+# RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|ico)$ [NC]
 # Entonces redirige a index.php
 RewriteRule ^(.*)$ index.php [L,QSA]

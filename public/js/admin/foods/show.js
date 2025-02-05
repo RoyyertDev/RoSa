@@ -9,6 +9,7 @@ fetch("/api/foods", {
   .then((response) => response.json())
   .then((data) => {
     data.forEach((data) => {
+      console.log(data);
       tbody.innerHTML += `
           <tr class="my-1 border-b border-gray-200 dark:border-slate-500/40 hover:bg-gray-200 dark:hover:bg-[#444444] transition-colors duration-300">
             <td class="w-12 text-center">

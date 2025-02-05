@@ -111,15 +111,43 @@
     class="flex flex-row w-full gap-2 py-3 px-4 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-xl items-center transition-all duration-400"
   >
     <img class="w-5 h-5" src="/svg/comentario-alt.svg" alt="" />
-    Chats
+    Chat global
   </a>
-  <a
-    href=""
-    class="flex flex-row w-full gap-2 py-3 px-4 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-xl items-center transition-all duration-400"
+  <div
+    id="foodButton"
+    class="w-full py-3 px-4 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-xl items-center transition-all duration-400 relative cursor-pointer"
   >
-    <img class="w-5 h-5" src="/svg/restaurante.svg" alt="" />
-    Menu
-  </a>
+    <div class="flex flex-row gap-2" onclick="foodShow()">
+      <img class="w-5 h-5" src="/svg/restaurante.svg" alt="" />
+      Menu
+    </div>
+    <div
+      class="absolute -top-10 left-full bg-slate-200 dark:bg-[#2c2c2c] rounded-xl py-3 px-4 hidden flex-col items-center w-[400px] h-[500px] cursor-default gap-2 overflow-y-scroll"
+      id="cardModalFood"
+    >
+      <h1 class="font-bold text-xl">Productos disponibles</h1>
+      <div
+        class="grid grid-cols-2 w-full gap-2"
+        id="cardProductContainer"
+      ></div>
+    </div>
+  </div>
+  <div
+    id="paymentButton"
+    class="w-full py-3 px-4 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-xl items-center transition-all duration-400 relative cursor-pointer"
+  >
+    <div class="flex flex-row gap-2" onclick="paymentShow()">
+      <img class="w-5 h-5" src="/svg/Facturas.svg" alt="" />
+      Facturas
+    </div>
+    <div
+      class="absolute -top-10 left-full bg-slate-200 dark:bg-[#2c2c2c] rounded-xl py-3 px-4 hidden flex-col items-center w-[400px] h-[500px] cursor-default gap-2 overflow-y-scroll"
+      id="cardModalPayment"
+    >
+      <h1 class="font-bold text-xl">Facturas disponibles</h1>
+      <div class="flex flex-col w-full gap-2" id="cardPaymentContainer"></div>
+    </div>
+  </div>
   <a
     href="/"
     class="flex flex-row w-full gap-2 py-3 px-4 hover:bg-slate-200 dark:hover:bg-[#2c2c2c] rounded-xl items-center transition-all duration-400"
@@ -135,7 +163,7 @@
     placeholder="Buscar chats"
     class="w-full bg-slate-200 p-3 rounded-xl dark:bg-[#242424] dark:text-white border border-transparent focus:border-blueClaro focus:outline-none focus:ring-0 hover:border-blueClaro"
   />
-  <p class="text-white dark:text-[#4d4d4d] font-semibold">HISTORIAL DE CHATS</p>
+  <p class="dark:text-[#4d4d4d] font-semibold">HISTORIAL DE CHATS</p>
   <ul
     class="w-full overflow-y-scroll overflow-x-hidden no-scrollbar"
     id="historyChats"
@@ -144,16 +172,16 @@
 <section
   class="gap-4 w-full bg-gradient-to-t from-slate-200 dark:from-[#202020] from-80% to-transparent to-90%"
 >
-  <a
-    href=""
-    class="grid grid-cols-[auto_1fr_auto] w-full gap-4 bg-slate-200 dark:bg-[#242424] shadow-sm rounded-xl justify-center items-center p-3 font-semibold text-xl hover:border-blueClaro border border-transparent"
+  <button
+    class="grid grid-cols-[auto_1fr_auto] w-full gap-2 bg-slate-200 dark:bg-[#242424] shadow-sm rounded-xl justify-center items-center p-3 font-semibold text-xl hover:border-blueClaro border border-transparent"
+    id="profileButton"
   >
     <img
       src="https://www.clarin.com/img/2023/12/01/rhVeUAooY_2000x1500__1.jpg"
       alt=""
       class="w-10 h-10 object-cover rounded-full"
     />
-    RoSa
+    <span id="profileName"></span>
     <img class="w-6 h-6" src="/svg/ajustes.svg" alt="" />
-  </a>
+  </button>
 </section>
