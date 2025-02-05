@@ -12,6 +12,7 @@ use App\Http\Controllers\RolUsers;
 use App\Http\Controllers\Countries;
 use App\Http\Controllers\Provinces;
 use App\Http\Controllers\Cities;
+use App\Http\Controllers\SqlRequest;
 
 require_once __DIR__ . '/config/autoload.php';
 header('Content-Type: application/json');
@@ -250,6 +251,16 @@ switch ($uri) {
         switch ($method) {
             case 'GET':
                 Cities::show($id);
+            break; 
+        }
+    break;
+    case '/sqlRequest':
+        switch ($method) {
+            case 'POST':
+                SqlRequest::save($dates);
+            break; 
+            case 'GET':
+                SqlRequest::save($dates);
             break; 
         }
     break;

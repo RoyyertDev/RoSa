@@ -65,7 +65,7 @@ form.addEventListener("submit", async (e) => {
     const titleChat = input.value.substring(0, 50);
     const user = await obtainUserLogin();
     if (messages.childElementCount === 0) {
-      socket.emit("message", input.value, titleChat, user.id);
+      socket.emit("message", input.value, titleChat, user.id, conversation);
       input.value = "";
       loadChats(titleChat);
     } else {

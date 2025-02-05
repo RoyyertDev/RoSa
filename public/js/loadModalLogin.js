@@ -27,6 +27,8 @@ function loadLoginModal() {
       obtainCountries();
       document.getElementById("fk_countries").addEventListener("change", () => {
         obtainProvinces();
+        document.getElementById("fk_cities").innerHTML =
+          "<option value='' disabled selected>Seleccionar ciudad</option>";
       });
       document.getElementById("fk_provinces").addEventListener("change", () => {
         obtainCities();

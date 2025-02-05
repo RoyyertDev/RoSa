@@ -28,10 +28,10 @@ io.on("connection", (socket) => {
 
   socket.on("loadChat", async (data) => {
     const messages = await loadMessageOfChat(data);
+    socket.idChat = data;
     messages.forEach((message) => {
       handleMessage(socket, message);
     });
-    socket.idChat = data;
   });
 });
 
