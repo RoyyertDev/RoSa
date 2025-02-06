@@ -34,7 +34,7 @@ socket.on("message", (message) => {
                   <li class="active flex ${
                     message.from === "User" ? "flex-row-reverse" : "flex-row"
                   } w-full gap-4 items-end text-slate-600 dark:text-white">
-                      <img src="https://www.clarin.com/img/2023/12/01/rhVeUAooY_2000x1500__1.jpg" alt=""
+                      <img src="/img/user.webp" alt=""
                           class="w-12 h-12 object-cover rounded-full">
                       <div class="grid grid-rows-[auto_1fr] rounded-3xl ${
                         message.from === "User"

@@ -19,7 +19,9 @@ function loadLoginModal() {
       const sendCreateDetails = document.getElementById("sendCreateDetails");
       buttonLogin.addEventListener("click", async () => {
         const logeo = await login(email.value, password.value);
-        logeo.success === true ? (window.location.href = "/") : null;
+        logeo.success === true
+          ? (window.location.href = "/")
+          : alert(logeo.message);
       });
       sendCreate.addEventListener("click", () => {
         createUser();
